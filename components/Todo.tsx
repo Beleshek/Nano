@@ -9,10 +9,11 @@ export default function TodoList() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const text = event.currentTarget.elements.todo.value.trim(); 
+    const form = event.currentTarget as HTMLFormElement & { todo: HTMLInputElement };
+    const text = form.todo.value.trim(); 
     if (text) {
       addTodo(Date.now().toString(), text);
-      event.currentTarget.elements.todo.value = '';
+      form.todo.value = '';
     }
   };
 
